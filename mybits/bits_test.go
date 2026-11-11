@@ -53,7 +53,7 @@ func TestLen32(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.Name, func(t *testing.T) {
 			got := Len32(tt.Value)
-			want := Len32(tt.Value)
+			want := bits.Len32(tt.Value)
 
 			if got != want {
 				t.Errorf("Len32(%d) = %d; want %d", tt.Value, got, want)

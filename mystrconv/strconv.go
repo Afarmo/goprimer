@@ -63,17 +63,12 @@ func ParseUint(s string, base int, bitSize int) (uint64, bool) {
 
 	var res uint64
 	for _, v := range s {
-		temp := res
-		res *= uint64(base)
-		if res < temp {
+		value := Extract(v)
+		if res > (^uint64(0)-value)/uint64(base) {
 			return 0, false
 		}
-		temp = res
 
-		res += Extract(v)
-		if res < temp {
-			return 0, false
-		}
+		res = res*uint64(base) + value
 	}
 
 	if res>>bitSize != 0 {
