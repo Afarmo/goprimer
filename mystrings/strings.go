@@ -3,6 +3,10 @@ package mystrings
 import "goprimer/myunicode"
 
 func Index(s, substr string) int {
+	if substr == "" {
+		return 0
+	}
+
 	var res = -1
 	for i := range s {
 		if i+len(substr) <= len(s) && s[i:i+len(substr)] == substr {
@@ -22,7 +26,7 @@ func HasPrefix(s, prefix string) bool {
 
 func Cut(s, sep string) (before, after string, found bool) {
 	if sep == "" {
-		return "", "", true
+		return "", s, true
 	}
 
 	index := Index(s, sep)
